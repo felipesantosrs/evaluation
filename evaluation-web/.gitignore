@@ -1,0 +1,9 @@
+.checkstyle
+.classpath
+.pmd
+.project
+.settings/*
+target/*
+/bin
+/target
+

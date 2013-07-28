@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<title>Auth Sample</title>
+	</h:head>
+
+	<h:body>
+	<h:form>
+			<rich:panel>
+				<h:graphicImage value="image/logo.png" alt="imagem" style="border: none" title="" />  
+			</rich:panel>
+			<br/>
+			<rich:panel>
+				<center>
+					<h:panelGrid columns="3" style="width: 460px;">
+						<h:outputLabel value="E-mail: " for="email" />
+						<h:inputText id="email" value="#{loginMBean.user.email}" size="40" maxlength="128" required="true" requiredMessage="O campo e-mail é obrigatório!">
+							<f:validateLength minimum="1" maximum="128"/>
+						</h:inputText>
+						<h:message for="email" style="color: red; font-weight: bold;" />
+
+						<h:outputLabel value="Senha: " for="password" style="width: 30px;" />
+						<h:inputSecret id="password" value="#{loginMBean.user.password}" size="40" maxlength="32" required="true" requiredMessage="O campo senha é obrigatório!">
+							<f:validateLength minimum="1" maximum="32"/>
+						</h:inputSecret>
+						<h:message for="password" style="color: red; font-weight: bold;" />
+
+						<h:outputText />
+						<h:commandButton value="Login" action="#{loginMBean.login}"/>
+					</h:panelGrid>
+				</center>
+			</rich:panel>
+		</h:form>
+		<br/>
+		<ui:include src="footer.xhtml" />
+	</h:body>
+</html>
+

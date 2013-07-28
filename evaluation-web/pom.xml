@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>br.edu.infnet.evaluation</groupId>
+    <artifactId>evaluation</artifactId>
+    <version>0.0.1</version>
+  </parent>
+
+  <artifactId>evaluation-web</artifactId>
+  <packaging>war</packaging>
+  <name>Evaluation Web</name>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>false</addClasspath>
+              <classpathPrefix>APP-INF/lib/</classpathPrefix>
+            </manifest>
+          </archive>
+          <webResources>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <filtering>true</filtering>
+              <includes>
+                <include>WEB-INF/pages.xml</include>
+                <include>WEB-INF/components.xml</include>
+              </includes>
+            </resource>
+          </webResources>
+          <dependentWarExcludes>WEB-INF/web.xml</dependentWarExcludes>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>ejb-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- EJB module -->
+    <dependency>
+      <groupId>br.edu.infnet.evaluation</groupId>
+      <artifactId>evaluation-ejb</artifactId>
+      <type>ejb</type>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Model module -->
+    <dependency>
+      <groupId>br.edu.infnet.evaluation</groupId>
+      <artifactId>evaluation-model</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <!-- JSF -->
+    <dependency>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+      <version>2.1.7</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.faces</groupId>
+      <artifactId>jsf-impl</artifactId>
+      <version>2.1.7</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Richfaces -->
+    <dependency>
+      <groupId>org.richfaces.ui</groupId>
+      <artifactId>richfaces-components-ui</artifactId>
+      <version>4.3.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.richfaces.core</groupId>
+      <artifactId>richfaces-core-impl</artifactId>
+      <version>4.3.1.Final</version>
+    </dependency>
+    <!-- Others -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
+    </dependency>
+  </dependencies>
+
+</project>
