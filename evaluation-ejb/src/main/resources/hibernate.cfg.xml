@@ -38,6 +38,15 @@
     <property name="c3p0.min_size">10</property>
     <property name="c3p0.timeout">100</property>
 
+    <!-- All mapped classes -->
+    <mapping class="br.edu.infnet.evaluation.entity.Question"/>
+    <mapping class="br.edu.infnet.evaluation.entity.User"/>
+    <mapping class="br.edu.infnet.evaluation.entity.Course"/>
+    <mapping class="br.edu.infnet.evaluation.entity.Subject"/>
+    <mapping class="br.edu.infnet.evaluation.entity.ClassRoom"/>
+    <mapping class="br.edu.infnet.evaluation.entity.Survey"/>
+    <mapping class="br.edu.infnet.evaluation.entity.Answer"/>
+
   </session-factory>
 
 </hibernate-configuration>
