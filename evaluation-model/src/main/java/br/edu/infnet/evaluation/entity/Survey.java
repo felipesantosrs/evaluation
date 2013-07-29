@@ -29,8 +29,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * Object that represents a survey at database.
@@ -121,7 +119,6 @@ public class Survey implements Serializable {
 	 * 
 	 * @return the start
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start")
 	public Date getStart() {
 		return start;
@@ -141,7 +138,6 @@ public class Survey implements Serializable {
 	 * 
 	 * @return the deadline
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "deadline")
 	public Date getDeadline() {
 		return deadline;
