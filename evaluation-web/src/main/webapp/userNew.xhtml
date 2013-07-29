@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="template.xhtml">
+
+	<ui:define name="title">Manutenção de Usuários</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<rich:panel header="Cadastro de Usuário">
+				<h:panelGrid columns="3">
+					<h:outputLabel for="name" value="Nome: *" />
+					<h:inputText id="name" value="#{userMBean.user.name}" maxlength="64" style="width: 98%" required="true" requiredMessage="O campo nome é obrigatório!">
+						<f:validateLength minimum="1" maximum="64" />
+					</h:inputText>
+					<h:message for="name" errorStyle="color: red; font-weight: bold;" />
+
+					<h:outputLabel for="email" value="E-mail: *" />
+					<h:inputText id="email" value="#{userMBean.user.email}" maxlength="128" style="width: 98%" required="true" requiredMessage="O campo e-mail é obrigatório!">
+						<f:validateLength minimum="1" maximum="128" />
+					</h:inputText>
+					<h:message for="email" errorStyle="color: red; font-weight: bold;" />
+
+					<h:outputLabel for="password" value="Senha: *" />
+					<h:inputSecret id="password" value="#{userMBean.user.password}" maxlength="32" style="width: 98%" required="true" requiredMessage="O campo senha é obrigatório!">
+						<f:validateLength minimum="1" maximum="32" />
+					</h:inputSecret>
+					<h:message for="password" errorStyle="color: red; font-weight: bold;" />
+
+					<h:outputLabel for="type" value="Tipo Usuário: *" />
+					<rich:select id="type" value="#{userMBean.user.type}" style="width: 98%" required="true" requiredMessage="O campo tipo de usuário é obrigatório!">
+						<f:selectItems value="#{userMBean.userTypes}" var="userType" itemLabel="#{userType.value}" itemValue="#{userType}" />
+					</rich:select>
+					<h:message for="type" errorStyle="color: red; font-weight: bold;" />
+
+					<h:commandButton value="Salvar" action="#{userMBean.persist}" style="cursor: pointer;" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

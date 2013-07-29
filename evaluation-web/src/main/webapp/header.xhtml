@@ -6,7 +6,10 @@
     xmlns:rich="http://richfaces.org/rich">
 
 	<rich:panel>
-		<h:graphicImage value="image/logo.png" height="60" width="89" style="vertical-align: middle"/>
+			<h:graphicImage value="image/logo.png" height="60" width="89" style="vertical-align:middle"/>
+		<h:form>
+			<h:commandLink value="Sair" action="#{loginMBean.logout}" />
+		</h:form>
 	</rich:panel>
 
 </ui:composition>

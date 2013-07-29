@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="template.xhtml">
+
+	<ui:define name="title">Manutenção de Avaliação</ui:define>
+
+	<ui:define name="content">
+		<a4j:outputPanel header="Lista de Avaliações" var="survey" rendered="#{!empty surveyMBean.list}">
+			<h:form>
+				<rich:dataTable id="tblSurvey" var="surveyDTO" value="#{surveyMBean.list}" style="width: 100%;">
+					<f:facet name="header">
+						<rich:columnGroup>
+							<rich:column>
+								<h:outputText value="Avaliação" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Disciplina" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Professor" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Data Inicial" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Data Final" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Status" />
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+					<rich:column style="text-align:center;">
+						<h:commandLink action="#{surveyMBean.questions}" value="#{surveyDTO.survey.description}" disabled="#{!surveyDTO.opened || surveyDTO.closed || surveyDTO.answered}">
+							<f:setPropertyActionListener target="#{questionMBean.surveyDTO}" value="#{surveyDTO}" />
+						</h:commandLink>
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{surveyDTO.classRoom.subject.name}" />
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{surveyDTO.classRoom.teacher.name}" />
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<h:outputText value="#{surveyDTO.survey.start}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>    
+					</rich:column>
+					<rich:column style="text-align:center;">
+						<h:outputText value="#{surveyDTO.survey.deadline}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>    
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{surveyDTO.opened ? (surveyDTO.closed ? 'Encerrado' : (surveyDTO.answered ? 'Respondido' : 'Aguardando Resposta')) : 'Aguardando Liberação'}" />
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
+		</a4j:outputPanel>
+		<a4j:outputPanel  header="Lista de Avaliações" value="#{surveyMBean.list}" rendered="#{empty surveyMBean.list}">
+			<h:outputText value="Não existem avaliações para ser preenchidas!"  />
+		</a4j:outputPanel>
+	</ui:define>
+
+</ui:composition>

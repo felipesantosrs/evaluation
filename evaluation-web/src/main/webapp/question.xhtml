@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="template.xhtml">
+
+	<ui:define name="title">Avaliação</ui:define>
+
+	<ui:define name="content">
+	
+		<h:form>
+			<rich:panel header="Lista de Avaliação">
+				<rich:dataTable id="tblQuestion" var="question" value="#{questionMBean.list}" style="width: 100%;">
+				<rich:column>
+					<br/>
+					<h:outputText value="#{question.description}" style="text-align:center;"/>
+					<br/>
+					<br/>
+					<rich:message for="answer" />
+					<h:selectOneRadio value="#{question.answerValue}" id="answer" required="true" requiredMessage="É obrigatório informar resposta para essa questão!">
+						<f:selectItems value="#{answerMBean.answerValues}" var="answerValue" itemLabel="#{answerValue.value}" itemValue="#{answerValue}"  style="text-align:center;"/>
+					</h:selectOneRadio>
+				</rich:column>
+				</rich:dataTable>
+					<br/>
+					<br/>
+					<h:commandButton value="Cancelar" action="#{answerMBean.cancel}"  immediate="true" style="text-align:center;"/>
+					<h:commandButton value="Salvar" action="#{answerMBean.persist}" style="text-align:center;">
+						<f:setPropertyActionListener target="#{answerMBean.surveyDTO}" value="#{questionMBean.surveyDTO}" />
+					</h:commandButton>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
